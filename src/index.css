@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+p,
+b,
+span,
+pre,
+.text,
+.text-muted,
+.jost {
+  font-family: "Jost", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.source,
+.heading {
+  font-family: "Source Sans 3", sans-serif;
+}
+.ralway {
+  font-family: "Raleway", sans-serif;
+}
+
+/* ****VARIABLES***** */
+:root {
+  --navHeight: clamp(40px, 4.5vw, 70px);
+  --navPaddingX: 0.7rem;
+  --navPaddingY: 1.5rem;
+  --navPadding: var(--navPaddingX) var(--navPaddingY);
+}
+
+@media screen and (max-width: 1400px) {
+  html {
+    font-size: 100%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  html {
+    font-size: 88%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 75%;
+  }
+}
+@media screen and (max-width: 720px) {
+  html {
+    font-size: 60%;
+  }
+}
