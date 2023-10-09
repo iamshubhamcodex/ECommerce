@@ -1,0 +1,14 @@
+.imageCard{
+  overflow: hidden;
+  aspect-ratio: 1/1;
+}
+.imageCard.cat{width: 32%;}
+.imageCard img{
+  object-fit: cover;
+  object-position: center;
+  scale: 1;
+  transition: scale 0.2s ease-in-out;
+}
+.imageCard img:hover{
+  scale: 1.1;
+}
