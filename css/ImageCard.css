@@ -1,14 +1,68 @@
-.imageCard{
+.imageCard {
   overflow: hidden;
   aspect-ratio: 1/1;
 }
-.imageCard.cat{width: 32%;}
-.imageCard img{
+.imageCard.cat {
+  width: 32%;
+}
+.imageCard.col {
+  width: 23%;
+}
+.imageCard img {
   object-fit: cover;
   object-position: center;
   scale: 1;
   transition: scale 0.2s ease-in-out;
 }
-.imageCard img:hover{
+.imageCard.cat img:hover {
   scale: 1.1;
+}
+.imageCard.col img:hover {
+  scale: 1.02;
+}
+
+@media screen and (max-width: 1400px) {
+  .imageCard.cat {
+    width: 32%;
+  }
+  .imageCard.col {
+    width: 23%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .imageCard.cat {
+    width: 32%;
+  }
+  .imageCard.col {
+    width: 23%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .imageCard.cat {
+    width: 30%;
+  }
+  .imageCard.col {
+    width: 32%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .imageCard.cat {
+    width: 48%;
+  }
+  .imageCard.col {
+    width: 46%;
+  }
+}
+@media screen and (max-width: 720px) {
+  .imageCard.cat {
+    width: 48%;
+  }
+  .imageCard.col {
+    width: 46%;
+  }
+}
+@media screen and (max-width: 520px) {
+  .imageCard.cat {
+    width: 45%;
+  }
 }

@@ -5,3 +5,9 @@ section h2.ralway.title {
   font-weight: 700;
   text-transform: uppercase;
 }
+@media screen and (max-width: 600px) {
+  section h2.ralway.title {
+    font-weight: 900;
+    font-size: 2.25rem;
+  }
+}

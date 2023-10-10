@@ -1,16 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import "../css/Caraousal.css";
-import Section from "./Section";
+import Section from "../Section";
+import "../../css/Home/Caraousal.css";
 
-interface CaraousalProps {
-  data: {
-    src: string;
-  }[];
-}
-
-const Caraousal = ({ data }: CaraousalProps) => {
+const Caraousal = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const caraousalRef = useRef<HTMLDivElement>(null);
+
+  const data = [
+    { src: "first.png" },
+    { src: "second.png" },
+    { src: "third.png" },
+    { src: "fourth.png" },
+    { src: "fifth.png" },
+    { src: "sixth.png" },
+    { src: "seventh.png" },
+  ];
 
   const handleIndicatorClick = (index: number): void => {
     if (caraousalRef && caraousalRef.current)
@@ -42,6 +46,7 @@ const Caraousal = ({ data }: CaraousalProps) => {
 
     // handleBtnClick(true);
   };
+
   useEffect(() => {
     const clickInterval = setInterval(() => {
       handleIntervalClick();
