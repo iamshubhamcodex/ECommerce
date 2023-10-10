@@ -1,0 +1,35 @@
+.caraousal{
+  max-height: 600px;
+  height: 75vh;
+}
+.caraousal .images{
+  max-height: calc(75vh - 40px);
+  transition: transform 0.35s ease-in;
+}
+.caraousal .images img{
+  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.indicators .indice{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(195, 195, 195);
+  cursor: pointer;
+}
+.indicators .indice.active{
+  background-color: aquamarine;
+}
+.caraousal .rightBtn i,
+.caraousal .leftBtn i{
+  padding: 7px;
+  border-radius: 3px;
+  z-index: 50;
+}
+.caraousal .rightBtn i:hover,
+.caraousal .leftBtn i:hover{
+  background-color: rgba(0 0 0 /0.15);
+}

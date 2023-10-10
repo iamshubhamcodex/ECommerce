@@ -33,6 +33,9 @@ h6,
 .ralway {
   font-family: "Raleway", sans-serif;
 }
+section{
+  max-width: 1500px;
+}
 
 /* ****VARIABLES***** */
 :root {
