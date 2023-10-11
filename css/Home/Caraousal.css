@@ -1,6 +1,6 @@
 .caraousal {
   min-height: 500px;
-  max-height: 75vh;
+  max-height: max-content;
 }
 .caraousal .images {
   min-height: 500px;

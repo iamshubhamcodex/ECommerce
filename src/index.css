@@ -44,7 +44,10 @@ section {
   --navPaddingY: 1.5rem;
   --navPadding: var(--navPaddingX) var(--navPaddingY);
 }
-
+html{
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
 @media screen and (max-width: 1400px) {
   html {
     font-size: 100%;

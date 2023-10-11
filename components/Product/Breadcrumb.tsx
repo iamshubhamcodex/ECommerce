@@ -31,7 +31,7 @@ const Breadcrumb = () => {
         </div>
       </Section>
       <Section padding={false} margin={false}>
-        <div className="mb-2 mt-6 border-b border-b-slate-400"></div>
+        <div className="mb-2 mt-4 border-b border-b-slate-400"></div>
       </Section>
     </>
   );
