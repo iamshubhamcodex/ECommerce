@@ -17,12 +17,14 @@
 .indicators .indice {
   width: 15px;
   height: 15px;
-  border-radius: 50%;
+  border-radius: 30px;
   background-color: rgb(195, 195, 195);
   cursor: pointer;
+  transition: width 0.2s ease-in;
 }
 .indicators .indice.active {
   background-color: aquamarine;
+  width: 30px;
 }
 .caraousal .rightBtn i,
 .caraousal .leftBtn i {

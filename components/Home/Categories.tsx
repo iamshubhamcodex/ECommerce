@@ -3,7 +3,7 @@ import Section from "../Section";
 
 const Categories = () => {
   const data = [
-    { src: "first.png" },
+    { src: "first.png", link: "tops" },
     { src: "second.png" },
     { src: "third.png" },
     { src: "fourth.png" },
@@ -20,6 +20,7 @@ const Categories = () => {
                 key={item.src}
                 type="cat"
                 image={`/Categories/${item.src}`}
+                link={item.link}
               />
             );
           })}

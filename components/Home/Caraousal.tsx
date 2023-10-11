@@ -18,18 +18,18 @@ const Caraousal = () => {
 
   const handleIndicatorClick = (index: number): void => {
     if (caraousalRef && caraousalRef.current)
-      caraousalRef.current.style.transform = `translate(${
+      caraousalRef.current.style.transform = `translate3D(${
         caraousalRef.current.offsetWidth * -1 * index
       }px, 0)`;
     setActiveIndex(index);
   };
-  const handleBtnClick = (right: boolean) => {
+  const handleBtnClick = (right: boolean): void => {
     let currIndex: number = (activeIndex + (right ? +1 : -1)) % data.length;
     if (currIndex < 0) currIndex = data.length - 1;
 
     handleIndicatorClick(currIndex);
   };
-  const handleIntervalClick = () => {
+  const handleIntervalClick = (): void => {
     if (caraousalRef && caraousalRef.current) {
       const transform: string = caraousalRef.current.style.transform;
       const translateX: number =
