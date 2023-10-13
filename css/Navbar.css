@@ -1,6 +1,6 @@
 .navbar {
-  min-height: var(--navHeight);
-  height: max-content;
+  height: var(--navHeight);
+  /* height: max-content; */
 }
 .navbar .logo {
   height: calc(var(--navHeight) - 10px);
