@@ -3,7 +3,7 @@ import Section from "./Section";
 const Footer = () => {
   return (
     <>
-      <div className="homeGrown uppercase py-4 w-full mb-5 bg-[#e71318] text-white jost font-semibold text-4xl md:text-xl md:text-lg lg:text-base sm:text-base text-center px-4">
+      <div className="homeGrown uppercase py-4 w-full mb-5 bg-[#f0c557] text-white jost font-semibold text-4xl md:text-base sm:text-base text-center px-4">
         homegrown indian brand
       </div>
       <div className="over capitalize py-4 my-2 text-3xl text-center px-4">

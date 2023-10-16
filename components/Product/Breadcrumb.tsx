@@ -19,7 +19,7 @@ const Breadcrumb = () => {
           <select
             name="sortin_option"
             id="sortinOption"
-            className="px-2 py-1 border border-slate-400 rounded text-slate-700 min-w-[200px]"
+            className="px-2 py-1 border border-slate-400 rounded text-slate-700 min-w-mx md:min-w-[200px]"
           >
             <option value="null">Select Sorting Option</option>
             <option value="price_low_to_high">By Price Low to High</option>

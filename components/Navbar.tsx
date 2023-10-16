@@ -1,12 +1,40 @@
+import { useState } from "react";
+import { useNavigate } from "react-router";
+
+interface MobileNavProp {
+  show?: boolean;
+  active?: number;
+}
+
 const Navbar = () => {
+  const [mobileNav, setMobileNav] = useState<MobileNavProp>({
+    show: false,
+    active: -1,
+  });
+  const navigate = useNavigate();
+  const mobileNavSetter = (obj: MobileNavProp) => {
+    setMobileNav((prev) => {
+      const retValue: MobileNavProp = { ...prev, ...obj };
+      return retValue;
+    });
+  };
+
   return (
     <div className="navbar px-5 shadow-[0_3px_8px_-2px_rgba(0,0,0,0.15)] ">
       <div className="min-h-full navContainer max-w-7xl mx-auto flex flex-row justify-between items-center">
+        <div
+          className="hamburger md:hidden"
+          onClick={() => {
+            mobileNavSetter({ show: true });
+          }}
+        >
+          <i className="fa-solid fa-bars text-4xl"></i>
+        </div>
         <div className="logoCats flex flex-row items-center">
-          <div className="logo">
-            <img src="/logo.png" alt="" />
+          <div className="logo absolute -translate-x-14 md:translate-x-0 md:relative">
+            <img src="/kaarigar.png" alt="" />
           </div>
-          <div className="cats flex flex-row items-center gap-7">
+          <div className="cats flex-row items-center gap-7 hidden md:flex">
             <div className="navItem">
               <p className="source">topwear</p>
               <i className="fa-solid fa-chevron-down"></i>
@@ -26,7 +54,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="actionBtns flex flex-row items-center gap-7">
+        <div className="actionBtns flex flex-row items-center gap-3 md:gap-5 lg:gap-7">
           <div className="account">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +62,7 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-8 h-10"
+              className="w-9 md:w-8"
             >
               <path
                 strokeLinecap="round"
@@ -50,7 +78,7 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-8 h-10"
+              className="w-9 md:w-8"
             >
               <path
                 strokeLinecap="round"
@@ -66,7 +94,7 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-8 h-8"
+              className="w-9 md:w-8"
             >
               <path
                 strokeLinecap="round"
@@ -74,6 +102,107 @@ const Navbar = () => {
                 d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
               />
             </svg>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`mobNav h-screen w-screen absolute top-0 ${
+          mobileNav.show ? "left-0" : "left-[-100vw]"
+        } transition-all ease duration-300`}
+      >
+        <div
+          className="overlay bg-[#00000045] z-[998] absolute inset-0"
+          onClick={() => {
+            mobileNavSetter({ show: false, active: -1 });
+          }}
+        ></div>
+        <div className=" shadow shadow-2xl z-[999] relative bg-white max-w-[70vw] w-[500px] h-screen">
+          <div className="py-4 px-7 bg-gray-100 w-full h-max">
+            <img src="/logo.png" alt="" className="h-[60px]" />
+          </div>
+          <div className="bg-white my-3 px-5 flex flex-col">
+            <div
+              onClick={() => {
+                mobileNavSetter({ active: mobileNav.active === 0 ? -1 : 0 });
+              }}
+              className={`item cursor-pointer my-3 ${
+                mobileNav.show && mobileNav.active === 0 ? " h-max" : "h-[20px]"
+              } transition-all ease duration-300 overflow-hidden`}
+            >
+              <p className="text-xl jost text-gray-500 flex items-center justify-between font-semibold tracking-wider">
+                Topwear
+                <i className="fa-solid fa-chevron-down"></i>
+              </p>
+              <div className="subitem py-2 px-4">
+                <p className="jost items my-1 py-1 text-xl text-slate-600">
+                  Oversized
+                </p>
+                <p
+                  onClick={() => {
+                    mobileNavSetter({ active: -1, show: false });
+                    navigate("/product/tops");
+                  }}
+                  className="jost items my-1 py-1 text-xl text-slate-600"
+                >
+                  Shirts & Tops
+                </p>
+                <p
+                  onClick={() => {
+                    mobileNavSetter({ active: -1, show: false });
+                    navigate("/product/shirts");
+                  }}
+                  className="jost items my-1 py-1 text-xl text-slate-600"
+                >
+                  Dresses & Jumpsuits
+                </p>
+                <p className="jost items my-1 py-1 text-xl text-slate-600">
+                  Hoodies
+                </p>
+                <p className="jost items my-1 py-1 text-xl text-slate-600">
+                  Jackets
+                </p>
+              </div>
+            </div>
+            <div
+              onClick={() => {
+                mobileNavSetter({ active: mobileNav.active === 1 ? -1 : 1 });
+              }}
+              className={`item cursor-pointer my-3 ${
+                mobileNav.show && mobileNav.active === 1 ? " h-max" : "h-[20px]"
+              } transition-all ease duration-300`}
+            >
+              <p className="text-xl jost text-gray-500 flex items-center justify-between font-semibold tracking-wider">
+                Bottomwear
+                {/* <i className="fa-solid fa-chevron-down"></i> */}
+              </p>
+            </div>
+            <div
+              onClick={() => {
+                mobileNavSetter({ active: mobileNav.active === 1 ? -1 : 1 });
+              }}
+              className={`item cursor-pointer my-3 ${
+                mobileNav.show && mobileNav.active === 1 ? " h-max" : "h-[20px]"
+              } transition-all ease duration-300`}
+            >
+              <p className="text-xl jost text-gray-500 flex items-center justify-between font-semibold tracking-wider">
+                Topwear
+                {/* <i className="fa-solid fa-chevron-down"></i> */}
+              </p>
+            </div>
+            <div
+              onClick={() => {
+                mobileNavSetter({ active: mobileNav.active === 1 ? -1 : 1 });
+              }}
+              className={`item cursor-pointer my-3 ${
+                mobileNav.show && mobileNav.active === 1 ? " h-max" : "h-[20px]"
+              } transition-all ease duration-300`}
+            >
+              <p className="text-xl jost text-gray-500 flex items-center justify-between font-semibold tracking-wider">
+                Shoes
+                {/* <i className="fa-solid fa-chevron-down"></i> */}
+              </p>
+            </div>
           </div>
         </div>
       </div>
