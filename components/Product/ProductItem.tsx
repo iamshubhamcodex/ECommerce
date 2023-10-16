@@ -1,17 +1,30 @@
-interface ProductItemProps {
+import { useNavigate } from "react-router";
+
+export interface ProductItemProps {
   src: number;
   title: string;
   subtitle?: string;
   price: number;
+  to?: string;
+  id: number;
 }
 const ProductItem = ({
   src,
   title,
   subtitle,
   price,
+  to,
+  id,
 }: ProductItemProps): React.ReactNode => {
+  const navigate = useNavigate();
+
   return (
-    <div className="w-full relative h-max cursor-pointer">
+    <div
+      className="w-full relative h-max cursor-pointer"
+      onClick={() => {
+        to && navigate(to + "/" + id);
+      }}
+    >
       <span className="absolute h-[40px] grid items-center justify-center aspect-square p-2 rounded-full bg-[#24242445] text-white text-xl right-3 top-3 cursor-pointer">
         <i className="fa-regular fa-heart"></i>
       </span>

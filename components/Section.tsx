@@ -5,6 +5,7 @@ interface SectionProp {
   heading?: string;
   padding?: boolean;
   margin?: boolean;
+  headingSide?: boolean;
 }
 
 const Section = ({
@@ -12,10 +13,23 @@ const Section = ({
   heading,
   padding = true,
   margin = true,
+  headingSide = false,
 }: SectionProp): React.ReactNode => {
   return (
-    <section className={" mx-auto relative " + (padding ? " py-4 px-2" : "")}>
-      {heading && <h2 className="ralway title my-2 ">{heading}</h2>}
+    <section
+      className={
+        "bg-white shadow lg:shadow-none mx-auto relative " +
+        (padding ? " py-4 px-2" : "")
+      }
+    >
+      {heading && !headingSide && (
+        <h2 className="ralway title my-2 ">{heading}</h2>
+      )}
+      {heading && headingSide && (
+        <h2 className="my-2 py-2 text-xl font-bold capitalize source">
+          {heading}
+        </h2>
+      )}
       <div className={"content " + (margin ? "my-3" : "")}>{children}</div>
     </section>
   );

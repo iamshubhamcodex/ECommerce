@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar.tsx";
-import "../css/Navbar.css";
+import HomePage from "../pages/HomePage.tsx";
+import ProductPage from "../pages/ProductPage.tsx";
+import ProductDetailPage from "../pages/ProductDetailPage.tsx";
 import App from "./App.tsx";
+import "../css/Navbar.css";
 import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./HomePage.tsx";
-import ProductPage from "./ProductPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ProductPage />,
+      },
+      {
+        path: "/product/detail/:id",
+        element: <ProductDetailPage />,
       },
     ],
   },

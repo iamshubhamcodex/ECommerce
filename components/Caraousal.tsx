@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import "../css/Caraousal.css";
+import { useEffect, useRef, useState } from "react";
 import Section from "./Section";
+import "../css/Home/Caraousal.css";
 
-interface CaraousalProps {
+export interface CaraousalProps {
   data: {
     src: string;
   }[];
+  basePath?: string;
 }
 
-const Caraousal = ({ data }: CaraousalProps) => {
+const Caraousal = ({ data, basePath = "Caraousal/" }: CaraousalProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const caraousalRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +72,7 @@ const Caraousal = ({ data }: CaraousalProps) => {
             data.map((item) => {
               return (
                 <img
-                  src={"/Caraousal/" + item.src}
+                  src={"/" + basePath + item.src}
                   alt=""
                   className="img"
                   key={item.src}

@@ -1,27 +1,32 @@
 import Section from "../Section";
-import ProductItem from "./ProductItem";
+import ProductItem, { ProductItemProps } from "./ProductItem";
 
 const Products = () => {
-  const data = [
+  const data: ProductItemProps[] = [
     {
+      id: 1,
       src: 1,
+      to: "/product/detail/tops",
       title: "Solids: Shades of Purple Set",
       subtitle: "Women Cropped Tops",
       price: 499,
     },
     {
+      id: 2,
       src: 3,
       title: "Solids: Shades of Purple Set",
       subtitle: "Women Cropped Tops",
       price: 499,
     },
     {
+      id: 3,
       src: 5,
       title: "Solids: Shades of Purple Set",
       subtitle: "Women Cropped Tops",
       price: 499,
     },
     {
+      id: 4,
       src: 7,
       title: "Solids: Shades of Purple Set",
       subtitle: "Women Cropped Tops",
@@ -35,11 +40,13 @@ const Products = () => {
           data.map((item) => {
             return (
               <ProductItem
+                id={item.id}
                 key={item.src}
                 title={item.title}
                 price={item.price}
                 src={item.src}
                 subtitle={item.subtitle}
+                to={item.to}
               />
             );
           })}
