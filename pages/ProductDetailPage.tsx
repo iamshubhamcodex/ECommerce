@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import Detail from "../components/ProductDetail/Detail";
 import Similar from "../components/ProductDetail/Similar";
-import Trending from "../components/ProductDetail/Trending";
+import Trending from "../components/ProductDetail/Trending";  
 
 export default function ProductDetailPage() {
   useLayoutEffect(() => {

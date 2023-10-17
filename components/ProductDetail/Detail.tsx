@@ -1,5 +1,6 @@
 import Section from "../Section";
 import Caraousal, { CaraousalProps } from "../Caraousal";
+import Accordian from "./Accordian";
 import { useParams } from "react-router";
 
 const Detail = () => {
@@ -19,14 +20,14 @@ const Detail = () => {
               return (
                 <img
                   key={index}
-                  src={"/ProductDetail/" + item.src}
+                  src={"/ProductDetail/" + id + "/" + item.src}
                   className="w-[48%] "
                 />
               );
             })}
         </div>
         <div className="md:hidden block w-[100%]  md:w-[50%] lg:w-[60%] p-4 px-5 ">
-          <Caraousal data={data} basePath={"ProductDetail/"} />
+          <Caraousal data={data} basePath={"ProductDetail/" + id + "/"} />
         </div>
         <div className="w-[100%] md:w-[50%] lg:w-[40%]  pt-4 lg:py-4 px-5">
           <p className="heading font-bold text-2xl md:text-4xl lg:text-5xl text-[#343434]">
@@ -36,8 +37,13 @@ const Detail = () => {
             {id}
           </p>
           <hr className="my-4 hidden lg:block" />
-          <p className="source mt-4 lg:my-4 text-3xl text-[#58595b] font-bold">
-            ₹ 1290
+          <p className="source mt-4 lg:my-4 text-3xl text-[#343434] md:text-[#58595b] font-bold">
+            ₹ 1290&nbsp;
+            <span className="text-slate-400 text-lg font-light line-through mx-3">
+              ₹ 1599
+            </span>{" "}
+            <span className="text-[#e66a51] text-xl font-normal">19% OFF</span>
+            <span></span>
           </p>
           <div className="sizes mt-4 lg:mt-6 font-bold">
             <p className="heading text-2xl md:text-xl lg:text-xl mb-5 text-[#58595b]">
@@ -95,13 +101,14 @@ const Detail = () => {
             </select>
           </div>
           <div className="cart flex gap-7 my-4">
-            <p className="add uppercase py-2 bg-[#ec3d25] text-white text-center text-xl font-bold rounded source px-5 w-[60%]">
+            <p className="add uppercase py-2 bg-[#ec3d25] text-white text-center text-xl font-bold rounded source px-5 w-[58%]">
               Add to cart
             </p>
-            <p className="add py-2 border border-[#148c8d] text-[#148c8d] text-center text-xl font-bold source rounded px-5 w-[40%]">
+            <p className="add py-2 border border-[#148c8d] text-[#148c8d] text-center text-xl font-bold source rounded px-5 w-[42%]">
               Add to Wishlist
             </p>
           </div>
+          <Accordian />
         </div>
       </div>
     </Section>

@@ -33,8 +33,15 @@ h6,
 .ralway {
   font-family: "Raleway", sans-serif;
 }
-section {
-  max-width: 1500px;
+section,
+.maxWidth {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+section.max7,
+.maxWidth7 {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* ****VARIABLES***** */

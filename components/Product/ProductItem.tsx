@@ -41,10 +41,10 @@ const ProductItem = ({
         />
       </div>
       <div className="details my-2 px-4">
-        <p className="text-slate-600 jost border-b border-b-slate-300 font-semibold text-xl">
+        <p className="text-slate-600 jost border-b border-b-slate-300 font-semibold text-xl md:text-2xl lg:text-xl xl:text-lg">
           {title}
         </p>
-        <p className="text-xl source text-gray-500">{subtitle}</p>
+        <p className="text-lg source text-gray-500">{subtitle}</p>
         <p className="price text-2xl font-semibold mt-1 text-gray-700">
           ₹ {price}
         </p>

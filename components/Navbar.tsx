@@ -20,8 +20,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar px-5 shadow-[0_3px_8px_-2px_rgba(0,0,0,0.15)] ">
-      <div className="min-h-full navContainer max-w-7xl mx-auto flex flex-row justify-between items-center">
+    <div className="sticky top-0 z-[999] bg-[#ffffffd9] backdrop-blur-xl navbar px-5 shadow-[0_3px_8px_-2px_rgba(0,0,0,0.15)] ">
+      <div className="min-h-full navContainer maxWidth flex flex-row justify-between items-center">
         <div
           className="hamburger md:hidden"
           onClick={() => {
@@ -31,8 +31,11 @@ const Navbar = () => {
           <i className="fa-solid fa-bars text-4xl"></i>
         </div>
         <div className="logoCats flex flex-row items-center">
-          <div className="logo absolute -translate-x-14 md:translate-x-0 md:relative">
-            <img src="/kaarigar.png" alt="" />
+          <div
+            className="logo absolute -translate-x-14 md:translate-x-0 md:relative cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            <img src="/kaarigarBlack.png" alt="" />
           </div>
           <div className="cats flex-row items-center gap-7 hidden md:flex">
             <div className="navItem">
@@ -71,7 +74,7 @@ const Navbar = () => {
               />
             </svg>
           </div>
-          <div className="favorite">
+          <div className="favorite" onClick={() => navigate("/wishlist")}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -87,7 +90,7 @@ const Navbar = () => {
               />
             </svg>
           </div>
-          <div className="cart">
+          <div className="cart" onClick={() => navigate("/cart")}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -118,8 +121,11 @@ const Navbar = () => {
           }}
         ></div>
         <div className=" shadow shadow-2xl z-[999] relative bg-white max-w-[70vw] w-[500px] h-screen">
-          <div className="py-4 px-7 bg-gray-100 w-full h-max">
-            <img src="/logo.png" alt="" className="h-[60px]" />
+          <div
+            className="py-4 px-7 bg-gray-100 w-full h-max"
+            onClick={() => navigate("/")}
+          >
+            <img src="/kaarigar.png" alt="" className="h-[60px]" />
           </div>
           <div className="bg-white my-3 px-5 flex flex-col">
             <div

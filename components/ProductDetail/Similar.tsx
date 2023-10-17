@@ -1,9 +1,56 @@
+import ProductItem, { ProductItemProps } from "../Product/ProductItem";
 import Section from "../Section";
 
 const Similar = () => {
+  const data: ProductItemProps[] = [
+    {
+      id: 1,
+      src: 1,
+      to: "/product/detail/tops",
+      title: "Solids: Shades of Purple Set",
+      subtitle: "Women Cropped Tops",
+      price: 499,
+    },
+    {
+      id: 2,
+      src: 3,
+      title: "Solids: Shades of Purple Set",
+      subtitle: "Women Cropped Tops",
+      price: 499,
+    },
+    {
+      id: 3,
+      src: 5,
+      title: "Solids: Shades of Purple Set",
+      subtitle: "Women Cropped Tops",
+      price: 499,
+    },
+    {
+      id: 4,
+      src: 7,
+      title: "Solids: Shades of Purple Set",
+      subtitle: "Women Cropped Tops",
+      price: 499,
+    },
+  ];
   return (
-    <Section heading="Similar Product" headingSide>
-      <p>JE;;p</p>
+    <Section heading="Similar Products" headingSide>
+      <div className="px-6 grid grid-cols-3 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 gap-7">
+        {data &&
+          data.map((item) => {
+            return (
+              <ProductItem
+                id={item.id}
+                key={item.src}
+                title={item.title}
+                price={item.price}
+                src={item.src}
+                subtitle={item.subtitle}
+                to={item.to}
+              />
+            );
+          })}
+      </div>
     </Section>
   );
 };
