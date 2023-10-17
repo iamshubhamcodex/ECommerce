@@ -22,6 +22,11 @@ const CartPage = () => {
       price: 499,
     },
   ];
+
+  const total: number = data
+    .map((product) => product.price) // Extract an array of prices
+    .reduce((accumulator, currentPrice) => accumulator + currentPrice, 0); // Sum the prices
+
   return (
     <Section>
       <div className="maxWidth7">
@@ -57,20 +62,138 @@ const CartPage = () => {
         )}
         {data.length > 0 && (
           <>
-            <h2 className="text-[#58595b] font-bold text-2xl md:text-xl lg:text-lg mb-5">
+            <h2 className="text-[#58595b] font-bold text-2xl md:text-2xl lg:text-lg mb-5">
               My Cart{" "}
               <span className="font-normal">
                 ({data.length} item{data.length > 1 ? "s" : ""})
               </span>{" "}
             </h2>
-            <div className="contain flex my-3 px-3">
-              <div className="items w-[60%] border"></div>
-              <div className="order w-[40%] border">
-                {/* <div className="place w-full rounded bg-[#298e83] text-white ">
-                  <p className="text-xl md:text-xl lg:text-base font-bold source">
+            <div className="contain grid gap-7 grid-cols-2 md:grid-cols-3 my-3 px-3">
+              <div className="items col-span-2 w-full border border-slate-300 py-4 px-6">
+                {data &&
+                  data.length > 0 &&
+                  data.map((item) => {
+                    const { src, title, to, id } = item;
+                    return (
+                      <>
+                        <div className="item flex gap-7 mb-4">
+                          <img
+                            onClick={() => to && navigate(to + "/" + id)}
+                            src={`/Products/tops${src + 1}.png`}
+                            alt="First"
+                            className="h-[180px] w-auto rounded-lg cursor-pointer"
+                          />
+                          <div className="details py-3 h-100 border-b border-b-gray-300 w-full">
+                            <h3
+                              onClick={() => to && navigate(to + "/" + id)}
+                              className="text-2xl md:text-xl lg:text-lg font-bold text-[#58595b] cursor-pointer"
+                            >
+                              {title}
+                            </h3>
+                            <p className="text-xl md:text-lg lg:text-base text-slate-500  ">
+                              {"Tops"}
+                            </p>
+                            <div className="sizes mt-5 flex px-4">
+                              <div className="size py-1 px-3 font-semibold border border-gray-400 rounded text-lg md:text-base lg:text-sm text-[#58595b] ">
+                                Sizes:{" "}
+                                <select
+                                  name=""
+                                  id=""
+                                  className="text-lg md:text-base lg:text-sm outline-none"
+                                  style={{ background: "transparent" }}
+                                >
+                                  <option value="XS">XS</option>
+                                  <option value="S">S</option>
+                                  <option value="M">M</option>
+                                  <option value="L">L</option>
+                                  <option value="XL">XL</option>
+                                  <option value="XXL">XXL</option>
+                                </select>
+                              </div>
+                              <div className="size py-1 px-3 font-semibold border border-gray-400 rounded text-lg md:text-base lg:text-sm text-[#58595b] ml-4">
+                                Quantity:{" "}
+                                <select
+                                  name=""
+                                  id=""
+                                  className="text-lg md:text-base lg:text-sm outline-none"
+                                  style={{ background: "transparent" }}
+                                >
+                                  <option value="1">01</option>
+                                  <option value="2">02</option>
+                                  <option value="3">03</option>
+                                  <option value="4">04</option>
+                                  <option value="5">05</option>
+                                  <option value="6">06</option>
+                                  <option value="7">07</option>
+                                  <option value="8">08</option>
+                                  <option value="9">09</option>
+                                  <option value="10">10</option>
+                                </select>
+                              </div>
+                              <div className="quan"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="actions flex gap-4 justify-end">
+                          <p className="remove cursor-pointer py-1 px-4 rounded border border-gray-400 text-slate-500 source font-semibold">
+                            Remove
+                          </p>
+                          <p className="remove cursor-pointer py-1 px-4 rounded border border-gray-400 text-gray-500 source font-semibold">
+                            Move To Wishlist
+                          </p>
+                        </div>
+                      </>
+                    );
+                  })}
+              </div>
+              <div className="price px-3 col-span-2 md:col-span-1">
+                <div className="btn w-full rounded py-2 bg-[#298e83] hover:bg-[#2d9d91]">
+                  <p className="text-white font-bold text-center text-xl lg:text-lg cursor-pointer capitalize">
                     Place Order
                   </p>
-                </div> */}
+                </div>
+                <div className="billing my-5">
+                  <h3 className="uppercase text-xl lg:text-lg source text-[#7d848e] jost">
+                    Billing details
+                  </h3>
+                  <div className="details mt-4">
+                    <div className="item flex justify-between items-center py-2 px-5 border border-slate-200">
+                      <p className="text-xl lg:text-base text-gray-600">
+                        Cart Total
+                      </p>
+                      <p className="text-xl lg:text-base text-gray-800 source">
+                        ₹ {total.toFixed(2)}
+                      </p>
+                    </div>
+                    <div className="item flex justify-between items-center py-2 px-5 border-x border-b border-b-slate-200 border-x-slate-200">
+                      <p className="text-xl lg:text-base text-gray-600">GST</p>
+                      <p className="text-xl lg:text-base text-gray-600 source">
+                        ₹ {(total * 0.18).toFixed(2)}
+                      </p>
+                    </div>
+                    <div className="item flex justify-between items-center py-2 px-5 border-x border-b border-b-slate-200 border-x-slate-200">
+                      <p className="text-xl lg:text-base text-gray-600">
+                        Delivery
+                      </p>
+                      <p className="text-xl lg:text-base text-gray-800 source">
+                        ₹ 0
+                      </p>
+                    </div>
+                    <div className="item flex justify-between items-center py-2 px-5 border-x border-b border-b-slate-200 border-x-slate-200">
+                      <p className="text-xl lg:text-base text-gray-800">
+                        Total Amount
+                      </p>
+                      <p className="text-xl lg:text-base text-gray-600 font-bold  source">
+                        ₹ {(total + total * 0.18).toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="btn w-full rounded py-2 bg-[#298e83] hover:bg-[#2d9d91]">
+                  <p className="text-white font-bold text-center text-xl lg:text-lg cursor-pointer capitalize">
+                    Place Order
+                  </p>
+                </div>
               </div>
             </div>
           </>

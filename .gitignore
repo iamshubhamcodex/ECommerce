@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 Backup
+RazorPay
 
 node_modules
 dist
