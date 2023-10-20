@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
 import HomePage from "../pages/HomePage.tsx";
 import ProductPage from "../pages/ProductPage.tsx";
 import ProductDetailPage from "../pages/ProductDetailPage.tsx";
@@ -14,7 +16,11 @@ import "./index.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    ),
     children: [
       {
         path: "/",

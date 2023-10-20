@@ -1,36 +1,65 @@
 import { useNavigate } from "react-router";
 import { ProductItemProps } from "../components/Product/ProductItem";
 import Section from "../components/Section";
+import { useAppDispatch, useAppSelector } from "../helper/hooks";
+import { AppDispatch } from "../redux/store";
+import { setCartItemQuantity } from "../redux/userSlice";
+export interface CartItemProps extends ProductItemProps {
+  quantity: number;
+}
+
+// const data: CartItemProps[] = [
+//   {
+//     id: 1,
+//     src: 1,
+//     to: "/product/detail/tops",
+//     title: "Solids: Shades of Purple Set",
+//     subtitle: "Women Cropped Tops",
+//     price: 499,
+//     quantity: 2,
+//   },
+//   {
+//     id: 3,
+//     src: 5,
+//     to: "/product/detail/tops",
+//     title: "Solids: Shades of Purple Set",
+//     subtitle: "Women Cropped Tops",
+//     price: 499,
+//     quantity: 1,
+//   },
+// ];
 
 const CartPage = () => {
+  const { cart: cartItems } = useAppSelector("user");
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useAppDispatch();
+  // const [cartItems, setCartItems] = useState<CartItemProps[]>(data);
 
-  const data: ProductItemProps[] = [
-    {
-      id: 1,
-      src: 1,
-      to: "/product/detail/tops",
-      title: "Solids: Shades of Purple Set",
-      subtitle: "Women Cropped Tops",
-      price: 499,
-    },
-    {
-      id: 3,
-      src: 5,
-      title: "Solids: Shades of Purple Set",
-      subtitle: "Women Cropped Tops",
-      price: 499,
-    },
-  ];
+  const cartItemsSetter = <K extends keyof CartItemProps>(
+    index: number,
+    key: K,
+    value: CartItemProps[K]
+  ) => {
+    dispatch(setCartItemQuantity({ index, key, value }));
+    // setCartItems((prev) => {
+    //   return prev.map((item: CartItemProps, number: number) => {
+    //     const tempItem: CartItemProps = item;
+    //     if (number === index) {
+    //       tempItem[key] = value;
+    //     }
+    //     return tempItem;
+    //   });
+    // });
+  };
 
-  const total: number = data
-    .map((product) => product.price) // Extract an array of prices
+  const total: number = cartItems
+    .map((product) => product.price * product.quantity) // Extract an array of prices
     .reduce((accumulator, currentPrice) => accumulator + currentPrice, 0); // Sum the prices
 
   return (
     <Section>
       <div className="maxWidth7">
-        {data.length === 0 && (
+        {cartItems.length === 0 && (
           <>
             <div
               className="noItem mx-auto py-6 max-w-5xl flex justify-center"
@@ -60,22 +89,22 @@ const CartPage = () => {
             </div>
           </>
         )}
-        {data.length > 0 && (
+        {cartItems.length > 0 && (
           <>
             <h2 className="text-[#58595b] font-bold text-2xl md:text-2xl lg:text-lg mb-5">
               My Cart{" "}
               <span className="font-normal">
-                ({data.length} item{data.length > 1 ? "s" : ""})
+                ({cartItems.length} item{cartItems.length > 1 ? "s" : ""})
               </span>{" "}
             </h2>
             <div className="contain grid gap-7 grid-cols-2 md:grid-cols-3 my-3 px-3">
               <div className="items col-span-2 w-full border border-slate-300 py-4 px-6">
-                {data &&
-                  data.length > 0 &&
-                  data.map((item) => {
+                {cartItems &&
+                  cartItems.length > 0 &&
+                  cartItems.map((item, itemIndex) => {
                     const { src, title, to, id } = item;
                     return (
-                      <>
+                      <div key={id + src}>
                         <div className="item flex gap-7 mb-4">
                           <img
                             onClick={() => to && navigate(to + "/" + id)}
@@ -113,10 +142,20 @@ const CartPage = () => {
                               <div className="size py-1 px-3 font-semibold border border-gray-400 rounded text-lg md:text-base lg:text-sm text-[#58595b] ml-4">
                                 Quantity:{" "}
                                 <select
+                                  defaultValue={item.quantity}
                                   name=""
                                   id=""
                                   className="text-lg md:text-base lg:text-sm outline-none"
                                   style={{ background: "transparent" }}
+                                  onChange={(
+                                    e: React.ChangeEvent<HTMLSelectElement>
+                                  ) => {
+                                    cartItemsSetter(
+                                      itemIndex,
+                                      "quantity",
+                                      parseInt(e.target.value)
+                                    );
+                                  }}
                                 >
                                   <option value="1">01</option>
                                   <option value="2">02</option>
@@ -142,7 +181,7 @@ const CartPage = () => {
                             Move To Wishlist
                           </p>
                         </div>
-                      </>
+                      </div>
                     );
                   })}
               </div>

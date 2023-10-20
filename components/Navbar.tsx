@@ -35,7 +35,7 @@ const Navbar = () => {
             className="logo absolute -translate-x-14 md:translate-x-0 md:relative cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <img src="/kaarigarBlack.png" alt="" />
+            <img src="/kaarigar.png" alt="" />
           </div>
           <div className="cats flex-row items-center gap-7 hidden md:flex">
             <div className="navItem">

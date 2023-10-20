@@ -5,7 +5,7 @@ export interface ProductItemProps {
   title: string;
   subtitle?: string;
   price: number;
-  to?: string;
+  to: string;
   id: number;
 }
 const ProductItem = ({
